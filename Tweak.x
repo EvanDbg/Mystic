@@ -20,3 +20,14 @@
 }
 
 %end
+
+//iOS 13
+%hook CSTeachableMomentsContainerViewController
+
+-(void)_updateText:(id)arg1 {
+  int battery = [[UIDevice currentDevice] batteryLevel] * 100;
+  arg1 = [NSString stringWithFormat:@"%i%%", battery];
+  %orig;
+}
+
+%end
